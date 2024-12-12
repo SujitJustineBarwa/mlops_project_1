@@ -1,0 +1,18 @@
+steps:
+  - name: 'gcr.io/cloud-builders/git'
+    args: ['clone', 'https://github.com/SujitJustineBarwa/mlops_project_1.git']
+  
+  - name: 'python'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        cd mlops_project_1
+        python -m venv mlops_env
+        . venv/bin/activate
+        pip install -r requirements.txt
+        make install
+        make lint
+        make test  # or any other command you want to run
+
+#timeout: 1200s  # Optional: Set a timeout for the build
